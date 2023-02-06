@@ -1,9 +1,9 @@
 def solution(n):
     n = str(n)
-    answer = []
+    lst = []
     
     for i in n:
-        answer.append(int(i))
-    answer = answer[::-1]
+        lst.append(int(i))
+    return lst[::-1]
         
-    return answer
+    
