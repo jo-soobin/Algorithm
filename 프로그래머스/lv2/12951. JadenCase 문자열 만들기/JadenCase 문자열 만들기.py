@@ -1,11 +1,7 @@
 def solution(s):
-    answer = ''
-    
-    words = s.split(' ') # list형태로 저장
-    
-    for i in range(len(words)):
-        words[i] = words[i].capitalize()
-        
-    answer = ' '.join(words)
-    
-    return answer
+    new_word = ''
+    word = s.split(' ')
+    for i in range(len(word)):
+        word[i] = word[i].capitalize()
+    new_word = ' '.join(word)
+    return new_word
