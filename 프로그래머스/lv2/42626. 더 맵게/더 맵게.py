@@ -1,11 +1,28 @@
-from heapq import *
+from collections import deque
 
-def solution(scoville, K):
-    count = 0
-    heapify(scoville)
-    while scoville[0] < K and len(scoville) > 1:
-        num1 = heappop(scoville)
-        num2 = heappop(scoville)
-        heappush(scoville, num1 + num2 * 2)
-        count += 1
-    return count if scoville[0] >= K else -1
+def solution(S, K):
+    answer = 0 
+    mix = deque()
+    S.sort()
+    sco = deque(i for i in S)
+    
+    while (sco and sco[0] < K) or (mix and mix[0] < K):
+        answer += 1
+        if len(sco) + len(mix) <= 1:
+            return -1
+        
+        food = [0]*2
+        for a in range(2):
+            if sco and mix:
+                if sco[0] < mix[0]:
+                    food[a] = sco.popleft()
+                else:
+                    food[a] = mix.popleft()
+            elif sco:
+                food[a] = sco.popleft()
+            else:
+                food[a] = mix.popleft()
+            
+        mix.append(food[0]+food[1]*2)
+        
+    return answer
